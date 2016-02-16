@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<context:annotation-config />
+	<bean id="smth" class="com.kozak.Something" />
+	<aop:aspectj-autoproxy />
+	
+<!-- 	<aop:config>
+		<aop:aspect ref="smth">
+			<aop:pointcut expression="execution(* com.kozak.Car.drive(..))"
+				id="somethingdo" />
+			<aop:before pointcut-ref="somethingdo" method="doBefore" />
+			<aop:before pointcut-ref="somethingdo" method="doAfter" />
+			<aop:after-returning pointcut-ref="somethingdo"
+				method="doing" />
+		</aop:aspect>
+	</aop:config>
+ -->
+	<bean id="w201" class="com.kozak.Mercedes">
+		<constructor-arg value="215" />
+	</bean>
+	<bean id="e39" class="com.kozak.BMW" />
+	<bean id="amg" class="com.kozak.Amg"></bean>
+	<bean id="amgMercedes" class="com.kozak.AmgMercedes">
+		<constructor-arg value="255" />
+		<constructor-arg ref="amg" />
+	</bean>
+
+	<bean id="theTrack" class="com.kozak.Track" factory-method="getInstance" />
+
+
+	<bean id="Iuiuiuiu" class="com.kozak.Iuiuiuiu" />
+
+	<!--Авоматичне звязування за іменем поля -->
+	<bean id="doVoice" class="com.kozak.Brrrrr" />
+	<bean id="AlpinaBmw" class="com.kozak.AlpinaBmw" autowire="byName">
+		<property name="horsepower" value="455" />
+	</bean>
+
+	<!--Використання анотації -->
+	<bean id="audi" class="com.kozak.Audi">
+	</bean>
+
+	<bean id="tuningAudi" class="com.kozak.TuningAudi">
+		<property name="voicess">
+			<map>
+				<entry key="Iuiuiuiu" value-ref="Iuiuiuiu" />
+			</map>
+		</property>
+
+	</bean>
+
+
+</beans>
